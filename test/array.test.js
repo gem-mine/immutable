@@ -131,16 +131,7 @@ describe('数组的操作 - splice', () => {
     assert.equal(o1[2], o3[1]);
   });
   it('对数组 splice 操作（有删除，有插入）', () => {
-    const o2 = splice(
-      o1,
-      '',
-      1,
-      1,
-      {
-        name: 'black'
-      },
-      { name: 'white' }
-    );
+    const o2 = splice(o1, '', 1, 1, { name: 'black' }, { name: 'white' });
     assert.equal(o1.length, OUTER_LENGTH);
     assert.equal(o2.length, OUTER_LENGTH + 1);
     assert.equal(o1[0], o2[0]);
@@ -149,16 +140,7 @@ describe('数组的操作 - splice', () => {
     assert.equal(o2[2].name, 'white');
   });
   it('对数组 splice 操作（只插入）', () => {
-    const o2 = splice(
-      o1,
-      '',
-      1,
-      0,
-      {
-        name: 'black'
-      },
-      { name: 'white' }
-    );
+    const o2 = splice(o1, '', 1, 0, { name: 'black' }, { name: 'white' });
     assert.equal(o1.length, OUTER_LENGTH);
     assert.equal(o2.length, OUTER_LENGTH + 2);
     assert.equal(o1[0], o2[0]);
@@ -179,16 +161,7 @@ describe('数组的操作 - splice', () => {
     assert.equal(o1[2].friends[2], o3[2].friends[1]);
   });
   it('对深层次数组 splice 操作（有删除，有插入）', () => {
-    const o2 = splice(
-      o1,
-      '2.friends',
-      1,
-      1,
-      {
-        name: 'black'
-      },
-      { name: 'white' }
-    );
+    const o2 = splice(o1, '2.friends', 1, 1, { name: 'black' }, { name: 'white' });
     assert.equal(o1[2].friends.length, INNER_LENGTH);
     assert.equal(o2[2].friends.length, INNER_LENGTH + 1);
     assert.equal(o1[2].friends[0], o2[2].friends[0]);
@@ -197,16 +170,7 @@ describe('数组的操作 - splice', () => {
     assert.equal(o2[2].friends[2].name, 'white');
   });
   it('对深层次数组 splice 操作（只插入）', () => {
-    const o2 = splice(
-      o1,
-      '2.friends',
-      1,
-      0,
-      {
-        name: 'black'
-      },
-      { name: 'white' }
-    );
+    const o2 = splice(o1, '2.friends', 1, 0, { name: 'black' }, { name: 'white' });
     assert.equal(o1[2].friends.length, INNER_LENGTH);
     assert.equal(o2[2].friends.length, INNER_LENGTH + 2);
     assert.equal(o1[2].friends[0], o2[2].friends[0]);
