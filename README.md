@@ -20,7 +20,9 @@
 * 使用 native object，最大程度降低侵入式带来的问题，也不需要去分辨对象是否是 immutable
 * 体积微乎其微
 * 主API（setIn）一个，附加数组操作 push/pop/shift/unshift/splice，一共6个
-* 兼容IE8
+* 兼容IE8 
+
+安装：npm install zero-immutable --save
 
 ```javascript
 // 例如有个 state 结构如下：
