@@ -1,0 +1,26 @@
+{
+  "name": "zero-immutable",
+  "version": "0.1.0",
+  "description": "'immutable' for native javascript",
+  "keywords": [
+    "immutable",
+    "javascript",
+    "tricks"
+  ],
+  "author": {
+    "email": "caolvchong@gmail.com",
+    "name": "洪军钊"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint --ext .js ./"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.5.3"
+  }
+}
