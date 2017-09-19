@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/caolvchong/zero-immutable.svg?branch=master)](https://travis-ci.org/caolvchong/zero-immutable)
 [![Dependencies](https://david-dm.org/caolvchong/zero-immutable/status.svg)](https://david-dm.org/caolvchong/zero-immutable)
 
+<img src="https://caolvchong.github.io/images/immutable.gif" />
+
 ## immutable的作用
 * 为了更舒服的写 compare，例如 react 中 shouldComponentUpdate（如果使用 react-redux，这一步其实在 connect 时默认会处理）
 * 更方便操作深层次级别的state结构，例如 redux reducer 中繁琐的 spread 操作
