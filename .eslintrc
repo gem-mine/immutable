@@ -6,8 +6,12 @@
   },
   "rules": {
     "no-param-reassign": 0,
-    "comma-dangle": ["error", {
-      "objects": "ignore"
-    }]
+    "comma-dangle": [
+      "error",
+      {
+        "objects": "ignore"
+      }
+    ],
+    "arrow-parens": ["error", "as-needed"]
   }
 }
