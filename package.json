@@ -1,6 +1,6 @@
 {
   "name": "zero-immutable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "'immutable' for native javascript",
   "keywords": [
     "immutable",
@@ -11,13 +11,17 @@
     "email": "caolvchong@gmail.com",
     "name": "洪军钊"
   },
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "mocha",
-    "lint": "eslint --ext .js ./"
+    "lint": "eslint --ext .js ./test index.js",
+    "build": "babel --plugins transform-object-assign index.js --presets babel-preset-es2015 --out-dir ./build"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
