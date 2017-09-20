@@ -44,6 +44,10 @@ const o1 = {
           name: '福州'
         }
       }
+    },
+    {
+      name: 'miky',
+      age: 18
     }
   ]
 };
@@ -56,7 +60,8 @@ const o2 = setIn(o1, {
     id: 350200,
     name: '厦门'
   },
-  'j.k.l.m.n': 'inner'
+  'j.k.l.m.n': 'inner',
+  'i.2.age': v => v + 1
 });
 
 describe('setIn', () => {
@@ -98,5 +103,10 @@ describe('setIn', () => {
 
   it('一个很深层次的对象，且原先不存在，该节点会创建', () => {
     assert.equal(o2.j.k.l.m.n, 'inner');
+  });
+
+  it('值使用函数的情况，将会被执行，并用返回值作为新的值', () => {
+    assert.equal(o1.i[2].age, 18);
+    assert.equal(o2.i[2].age, 19);
   });
 });

@@ -19,48 +19,52 @@ function setIn(obj, data) {
   const result = shadowClone(obj);
   const cache = {};
   if (data) {
-    Object
-      .keys(data)
-      .forEach((keys) => {
-        const arr = keys.split('.');
-        const last = arr.pop();
-        const len = arr.length;
-        const value = data[keys];
-        let pointer;
-        let origin;
-        if (len) {
-          let prev;
-          let cacheKey;
-          for (let i = 0; i < len; i += 1) {
-            const key = arr[i];
-            if (i === 0) {
-              cacheKey = key;
-              if (cache[cacheKey] === undefined) {
-                origin = shadowClone(result[key]);
-                cache[cacheKey] = origin;
-              } else {
-                origin = cache[cacheKey];
-              }
-              pointer = origin;
-              prev = pointer;
+    Object.keys(data).forEach(keys => {
+      const arr = keys.split('.');
+      const last = arr.pop();
+      const len = arr.length;
+      let value = data[keys];
+      let pointer;
+      let origin;
+      if (len) {
+        let prev;
+        let cacheKey;
+        for (let i = 0; i < len; i += 1) {
+          const key = arr[i];
+          if (i === 0) {
+            cacheKey = key;
+            if (cache[cacheKey] === undefined) {
+              origin = shadowClone(result[key]);
+              cache[cacheKey] = origin;
             } else {
-              cacheKey += `.${key}`;
-              if (cache[cacheKey] === undefined) {
-                pointer = shadowClone(pointer[key]);
-                cache[cacheKey] = pointer;
-              } else {
-                pointer = shadowClone(pointer[key]);
-              }
-              prev[key] = pointer;
-              prev = pointer;
+              origin = cache[cacheKey];
             }
+            pointer = origin;
+            prev = pointer;
+          } else {
+            cacheKey += `.${key}`;
+            if (cache[cacheKey] === undefined) {
+              pointer = shadowClone(pointer[key]);
+              cache[cacheKey] = pointer;
+            } else {
+              pointer = shadowClone(pointer[key]);
+            }
+            prev[key] = pointer;
+            prev = pointer;
           }
-          pointer[last] = value;
-          result[arr[0]] = origin;
-        } else {
-          result[keys] = value;
         }
-      });
+        if (typeof value === 'function') {
+          value = value(prev[last]);
+        }
+        pointer[last] = value;
+        result[arr[0]] = origin;
+      } else {
+        if (typeof value === 'function') {
+          value = value(result[keys]);
+        }
+        result[keys] = value;
+      }
+    });
   }
   return result;
 }
