@@ -1,7 +1,7 @@
 # zero-immutable
 
-[![Build Status](https://travis-ci.org/caolvchong/zero-immutable.svg?branch=master)](https://travis-ci.org/caolvchong/zero-immutable)
-[![Dependencies](https://david-dm.org/caolvchong/zero-immutable/status.svg)](https://david-dm.org/caolvchong/zero-immutable)
+[![Build Status](https://travis-ci.org/gem-mine/zero-immutable.svg?branch=master)](https://travis-ci.org/caolvchong/zero-immutable)
+[![Dependencies](https://david-dm.org/gem-mine/zero-immutable/status.svg)](https://david-dm.org/caolvchong/zero-immutable)
 
 <img src="https://caolvchong.github.io/images/immutable.gif" />
 
