@@ -1,6 +1,6 @@
 {
   "name": "zero-immutable",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "'immutable' for native javascript",
   "keywords": [
     "immutable",
@@ -15,7 +15,8 @@
   "scripts": {
     "test": "mocha",
     "lint": "eslint --ext .js ./test index.js",
-    "build": "babel --plugins transform-object-assign index.js --presets babel-preset-es2015 --out-dir ./build"
+    "build": "babel --plugins transform-object-assign index.js --presets babel-preset-es2015 --out-dir ./build",
+    "prepublish": "npm run build"
   },
   "files": [
     "build"
