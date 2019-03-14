@@ -1,6 +1,6 @@
 {
-  "name": "zero-immutable",
-  "version": "0.1.5",
+  "name": "@gem-mine/immutable",
+  "version": "1.0.0",
   "description": "'immutable' for native javascript",
   "keywords": [
     "immutable",
