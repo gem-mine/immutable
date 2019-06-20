@@ -1,4 +1,4 @@
-# @gem-mine/immutable
+# @gem-mine/immutable 使用文档
 
 <img src="https://caolvchong.github.io/images/immutable.gif" />
 
