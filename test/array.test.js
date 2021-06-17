@@ -1,7 +1,5 @@
-const assert = require('assert')
-const ZI = require('../index')
-
-const { setIn, push, pop, shift, unshift, splice } = ZI
+import assert from 'assert'
+import { setIn, getIn, push, pop, shift, unshift, splice } from '../index'
 
 const o1 = [
   {
@@ -32,6 +30,13 @@ const o1 = [
   }
 ]
 
+const n1 = [1, 2, 3]
+
+const obj = {
+  a: 1,
+  b: 2,
+}
+
 const OUTER_LENGTH = o1.length
 const INNER_LENGTH = o1[2].friends.length
 
@@ -45,6 +50,30 @@ describe('数组的操作 - setIn', () => {
     const o2 = setIn(o1, { '2.friends.0.age': 4 })
     assert.equal(o1[2].friends[0].age, 3)
     assert.equal(o2[2].friends[0].age, 4)
+  })
+  it('同时修改数组中的多个值', () => {
+    const o2 = setIn(o1, { '1.age': 30, '2.friends.0.age': 4 })
+    assert.equal(o1[1].age, 25)
+    assert.equal(o2[1].age, 30)
+    assert.equal(o1[2].friends[0].age, 3)
+    assert.equal(o2[2].friends[0].age, 4)
+  })
+  it('修改number数组中的某个值', () => {
+    const n2 = setIn(n1, { '0': 30 })
+    assert.equal(n1[0], 1)
+    assert.equal(n2[0], 30)
+  })
+  it('修改对象中的某个值', () => {
+    const obj2 = setIn(obj, { 'a': 10 })
+    assert.equal(obj['a'], 1)
+    assert.equal(obj2['a'], 10)
+  })
+})
+
+describe('数组的操作 - getIn', () => {
+  it('获取数组中的某个值', () => {
+    const value = getIn(obj, 'a')
+    console.log(value)
   })
 })
 

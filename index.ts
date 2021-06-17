@@ -1,4 +1,16 @@
-function isArray(obj) {
+type keys = string | number
+
+type ObjectType = {
+  [k in keys]?: any;
+}
+
+type ArrayType = {
+  [index in keys]?: ObjectType | string | number;
+}
+
+type Socure = ObjectType | ArrayType
+
+function isArray(obj: Socure): boolean {
   if (Array.isArray) {
     return Array.isArray(obj)
   }
@@ -8,29 +20,31 @@ function isArray(obj) {
   return false
 }
 
-function shadowClone(source) {
+// 浅拷贝
+function shadowClone(source: Socure): Socure {
   if (isArray(source)) {
     return source.slice()
   }
   return Object.assign({}, source)
 }
 
-function setIn(obj, data) {
-  const result = shadowClone(obj)
-  const cache = {}
-  if (data) {
-    Object.keys(data).forEach(keys => {
-      const arr = keys.split('.')
-      const last = arr.pop()
+function setIn(obj: Socure, data: ObjectType) {
+  const result: Socure = shadowClone(obj)
+  const cache: ObjectType = {}
+  // data 不为空对象时
+  if (data && Object.keys(data).length) {
+    Object.keys(data).forEach((keys: string) => {
+      const arr: Array<string> = keys.split('.')
+      const last: string = arr.pop() || ''
       const len = arr.length
       let value = data[keys]
       let pointer
       let origin
       if (len) {
         let prev
-        let cacheKey
+        let cacheKey: string = ''
         for (let i = 0; i < len; i += 1) {
-          const key = arr[i]
+          const key: string = arr[i]
           if (i === 0) {
             cacheKey = key
             if (cache[cacheKey] === undefined) {
@@ -69,11 +83,11 @@ function setIn(obj, data) {
   return result
 }
 
-function getIn(obj, path) {
+function getIn(obj: Socure, path: string): Socure {
   let result = obj
   if (path) {
     const arr = path.split('.')
-    for (let i = 0; i < arr.length; i += 1) {
+    for (let i in arr) {
       const key = arr[i].trim()
       if (result === undefined) {
         return result
@@ -84,7 +98,8 @@ function getIn(obj, path) {
   return result
 }
 
-function getArray(obj, path) {
+
+function getArray(obj: ArrayType, path: string) {
   let arr = getIn(obj, path)
   if (!isArray(arr)) {
     throw new Error(`${obj} ${path} is not an array`)
@@ -93,7 +108,7 @@ function getArray(obj, path) {
   return arr
 }
 
-function setArray(obj, path, arr) {
+function setArray(obj: ArrayType, path: string, arr: ArrayType): ArrayType {
   if (!path) {
     return arr
   }
@@ -103,31 +118,31 @@ function setArray(obj, path, arr) {
   return setIn(obj, data)
 }
 
-function push(obj, path, data) {
+function push(obj: ArrayType, path: string, data: ObjectType) {
   const arr = getArray(obj, path)
   arr.push(data)
   return setArray(obj, path, arr)
 }
 
-function pop(obj, path) {
+function pop(obj: ArrayType, path: string) {
   const arr = getArray(obj, path)
   arr.pop()
   return setArray(obj, path, arr)
 }
 
-function shift(obj, path) {
+function shift(obj: ArrayType, path: string) {
   const arr = getArray(obj, path)
   arr.shift()
   return setArray(obj, path, arr)
 }
 
-function unshift(obj, path, data) {
+function unshift(obj: ArrayType, path: string, data: ArrayType) {
   const arr = getArray(obj, path)
   arr.unshift(data)
   return setArray(obj, path, arr)
 }
 
-function splice(obj, path, start, deleteCount, ...add) {
+function splice(obj: ArrayType, path: string, start: number, deleteCount: number, ...add: ObjectType[]) {
   const arr = getArray(obj, path)
   if (deleteCount === undefined) {
     deleteCount = arr.length - start
@@ -136,10 +151,4 @@ function splice(obj, path, start, deleteCount, ...add) {
   return setArray(obj, path, arr)
 }
 
-exports.setIn = setIn
-exports.getIn = getIn
-exports.push = push
-exports.pop = pop
-exports.shift = shift
-exports.unshift = unshift
-exports.splice = splice
+export { setIn, getIn, push, pop, shift, unshift, splice }

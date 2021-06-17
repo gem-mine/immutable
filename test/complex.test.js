@@ -1,7 +1,5 @@
-const assert = require('assert')
-const ZI = require('../index')
-
-const { setIn } = ZI
+import assert from 'assert'
+import { setIn, getIn, push, pop, shift, unshift, splice } from '../index'
 
 const o1 = {
   a: {
