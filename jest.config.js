@@ -9,8 +9,8 @@ module.exports = {
   testRegex: 'test/(.+)\\.test\\.(jsx?|tsx?)$',
   transform: {
     // 将.js后缀的文件使用babel-jest处理
-    "^.+\\.js$": "babel-jest",
-    "^.+\\.(ts|tsx)$": "ts-jest"
+    '^.+\\.js$': 'babel-jest',
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
-  transformIgnorePatterns: ["<rootDir>/node_modules/(?!(lodash-es|other-es-lib))"]
-};
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(lodash-es|other-es-lib))']
+}
