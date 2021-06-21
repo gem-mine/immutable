@@ -4,13 +4,12 @@
  */
 
 module.exports = {
-  // clearMocks: true,
-  // preset: 'ts-jest',
-  testRegex: 'test/(.+)\\.test\\.(jsx?|tsx?)$',
+  roots: [
+    '<rootDir>/test/'
+  ],
+  testRegex: 'test/(.+)\\.test\\.(tsx?|jsx?)$',
   transform: {
-    // 将.js后缀的文件使用babel-jest处理
-    '^.+\\.js$': 'babel-jest',
-    '^.+\\.(ts|tsx)$': 'ts-jest'
+    '^.+\\.jsx?$': 'babel-jest', // 将.js(x)后缀的文件使用babel-jest处理
+    '^.+\\.tsx?$': 'ts-jest', // 将.ts(x)后缀的文件使用ts-jest处理
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(lodash-es|other-es-lib))']
 }

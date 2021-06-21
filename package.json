@@ -11,32 +11,27 @@
     "email": "caolvchong@gmail.com",
     "name": "洪军钊"
   },
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint --ext .js ./test index.js",
-    "build": "babel --plugins transform-object-assign index.ts --presets babel-preset-es2015 --out-dir ./build",
+    "coverage": "jest --coverage",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint-fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx",
+    "build": "rimraf ./dist && tsc",
     "prepublish": "npm run build"
   },
   "files": [
-    "build"
+    "dist"
   ],
   "devDependencies": {
-    "@babel/preset-typescript": "^7.14.5",
+    "@babel/eslint-parser": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.2",
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.1.2",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-preset-es2015": "^6.24.1",
-    "eslint": "^4.14.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-config-standard-react": "^5.0.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.5.1",
-    "eslint-plugin-standard": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "eslint": "^7.28.0",
     "jest": "^27.0.4",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.2"
