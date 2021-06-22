@@ -10,6 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
+    "declaration": true, //打包之后是否生成声明文件
   },
   "exclude": [
     "node_modules",
