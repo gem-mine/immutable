@@ -8,28 +8,22 @@ type ArrayType = {
   [index in keys]?: ObjectType | string | number;
 }
 
-type Socure = ObjectType | ArrayType
+type Source = ObjectType | ArrayType
 
-function isArray(obj: Socure): boolean {
-  if (Array.isArray) {
-    return Array.isArray(obj)
-  }
-  if (Object.prototype.toString.call(obj) === '[object Array]') {
-    return true
-  }
-  return false
+function isArray(obj: Source): boolean {
+  return Array.isArray(obj)
 }
 
 // 浅拷贝
-function shadowClone(source: Socure): Socure {
+function shadowClone(source: Source): Source {
   if (isArray(source)) {
     return source.slice()
   }
   return Object.assign({}, source)
 }
 
-function setIn(obj: Socure, data: ObjectType): Socure {
-  const result: Socure = shadowClone(obj)
+function setIn(obj: Source, data: ObjectType): Source {
+  const result: Source = shadowClone(obj)
   const cache: ObjectType = {}
   // data 不为空对象时
   if (data && Object.keys(data).length) {
@@ -83,7 +77,7 @@ function setIn(obj: Socure, data: ObjectType): Socure {
   return result
 }
 
-function getIn(obj: Socure, path: string): Socure {
+function getIn(obj: Source, path: string): Source {
   let result = obj
   if (path) {
     const arr = path.split('.')
