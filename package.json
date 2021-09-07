@@ -1,39 +1,60 @@
 {
   "name": "@gem-mine/immutable",
-  "version": "1.0.0",
-  "description": "'immutable' for native javascript",
-  "keywords": [
-    "immutable",
-    "javascript",
-    "tricks"
-  ],
-  "author": {
-    "email": "caolvchong@gmail.com",
-    "name": "洪军钊"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint-fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx",
-    "build": "rimraf ./dist && tsc",
-    "prepublish": "npm run build"
-  },
+  "version": "2.0.0",
+  "main": "dist/cjs/index.js",
+  "typings": "dist/cjs/src/index.d.ts",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "start": "gmsr dev",
+    "dev": "gmsr build --watch",
+    "build": "gmsr build && rimraf ./dist/cjs/test",
+    "dev:doc": "gms dev:doc",
+    "build:doc": "gms build:doc",
+    "publish:platform": "gms publish:platform --type=sdk",
+    "test:unit": "gmsr test:unit",
+    "lint": "gmsr lint",
+    "lint:fix": "gmsr lint --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.11.4"
+  },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.14.5",
-    "@babel/preset-env": "^7.14.5",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.12.2",
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "eslint": "^7.28.0",
-    "jest": "^27.0.4",
-    "ts-jest": "^27.0.3",
-    "typescript": "^4.3.2"
-  }
+    "@gem-mine/babel-preset-app": "^3.2.11",
+    "@gem-mine/cli-plugin-composite": "^2.0.9",
+    "@gem-mine/cli-plugin-doc": "^5.0.4",
+    "@gem-mine/cli-plugin-eslint": "^4.1.3",
+    "@gem-mine/cli-plugin-jest": "^3.0.2",
+    "@gem-mine/cli-plugin-typescript": "^4.0.3",
+    "@gem-mine/eslint-config-recommend-ts": "^5.0.2",
+    "@gem-mine/script": "^3.2.3",
+    "@gem-mine/script-rollup": "^2.7.8",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@types/jest": "^26.0.19",
+    "eslint": "^7.5.0",
+    "husky": "^2.7.0",
+    "jest": "^27.0.6",
+    "lint-staged": "^7.2.2",
+    "ts-jest": "^27.0.4",
+    "typescript": "~4.0.5"
+  },
+  "description": "'immutable' for native javascript",
+  "keywords": "['immutable','javascript','tricks']",
+  "cName": "不可变数据",
+  "author": "洪军钊(101225), 郭屹璐(110412)",
+  "department": "Web端公共能力",
+  "repository": "https://github.com/gem-mine/immutable",
+  "component_id": "2766cfd3-bf99-4315-9e96-a871d9a6bdfe"
 }

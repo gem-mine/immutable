@@ -1,0 +1,11 @@
+{
+  "version": "3.8.3",
+  "template_id": "sdk",
+  "name": "immutable",
+  "path": "D:\\immutable",
+  "env": "{\"cli_version\":\"2.23.0\",\"npm_version\":\"6.14.13\",\"node_version\":\"v12.22.3\"}",
+  "user": "GYL",
+  "email": "1040260762@qq.com",
+  "choice": "{\"templateId\":\"sdk\",\"packageManager\":\"yarn\",\"registry\":\"http://registry.npm.sdp.nd/\",\"features\":[\"ts\",\"lintBeforeCommit\",\"jest\"],\"needDoc\":true}",
+  "project_id": "c7484b20-0faf-11ec-bb2e-ad9228f7941f_1631000817875"
+}

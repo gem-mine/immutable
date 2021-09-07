@@ -1,19 +1,34 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": [
-      "es2017"
-    ],
+    "jsx": "react",
+    "noEmit": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "declaration": true, //打包之后是否生成声明文件
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@gem-mine/cli-plugin-typescript/@types",
+      "./src/@types"
+    ]
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
+  "include": [
+    "src",
+    "./node_modules/@gem-mine/cli-plugin-typescript/@types",
+    "jest",
+    "test/unit"
+  ]
 }

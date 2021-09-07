@@ -1,11 +1,11 @@
-type keys = string | number
+type Keys = string | number
 
 type ObjectType = {
-  [k in keys]?: any;
+  [k in Keys]?: any;
 }
 
 type ArrayType = {
-  [index in keys]?: ObjectType | string | number;
+  [index in Keys]?: ObjectType | string | number;
 }
 
 type Source = ObjectType | ArrayType
@@ -19,7 +19,7 @@ function shadowClone(source: Source): Source {
   if (isArray(source)) {
     return source.slice()
   }
-  return Object.assign({}, source)
+  return { ...source }
 }
 
 function setIn(obj: Source, data: ObjectType): Source {
@@ -81,8 +81,8 @@ function getIn(obj: Source, path: string): Source {
   let result = obj
   if (path) {
     const arr = path.split('.')
-    for (const i in arr) {
-      const key = arr[i].trim()
+    for (const k of arr) {
+      const key = k.trim()
       if (result === undefined) {
         return result
       }
@@ -91,7 +91,6 @@ function getIn(obj: Source, path: string): Source {
   }
   return result
 }
-
 
 function getArray(obj: ArrayType, path: string) {
   let arr = getIn(obj, path)
@@ -143,12 +142,15 @@ function splice(
   deleteCount: number,
   ...add: ObjectType[]
 ): ArrayType {
+  let deleteNumber = deleteCount
   const arr = getArray(obj, path)
   if (deleteCount === undefined) {
-    deleteCount = arr.length - start
+    deleteNumber = arr.length - start
   }
-  arr.splice(start, deleteCount, ...add)
+  arr.splice(start, deleteNumber, ...add)
   return setArray(obj, path, arr)
 }
 
-export { setIn, getIn, push, pop, shift, unshift, splice }
+export {
+  setIn, getIn, push, pop, shift, unshift, splice
+}
