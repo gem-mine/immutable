@@ -1,4 +1,4 @@
-import { setIn, getIn, push, pop, shift, unshift, splice } from '../index'
+import { setIn } from '../../src'
 
 const o1 = {
   a: {
@@ -58,7 +58,7 @@ const o2 = setIn(o1, {
     name: '厦门'
   },
   'j.k.l.m.n': 'inner',
-  'i.2.age': v => v + 1
+  'i.2.age': (v) => v + 1
 })
 
 describe('setIn', () => {

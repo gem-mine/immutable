@@ -1,10 +1,9 @@
-# @gem-mine/immutable 使用文档
-
-<img src="https://caolvchong.github.io/images/immutable.gif" />
-
 ## 概述
 
-如果你想快速获取深层级的 JSON 数据，但不想在链式上不断判断是否已经 undefined：
+![immutable.gif](https://caolvchong.github.io/images/immutable.gif)
+
+### 使用场景
+1. 想快速获取深层级的 JSON 数据，但不想在链式上不断判断是否已经 undefined
 
 ```js
 if (obj && typeof obj.user !== 'undefined' && typeof obj.user.data !== 'undefined') {
@@ -12,36 +11,39 @@ if (obj && typeof obj.user !== 'undefined' && typeof obj.user.data !== 'undefine
 }
 ```
 
-另外，如果你想快速使用 immutable 的能力，又考虑到引入库的大小、兼容性问题，
+2. 想快速使用 immutable 的能力，又考虑到引入库的大小、易用性、兼容性问题
 
-那么：@gem-mine/immutable 就非常适合于你，它可以被任意的 js 项目中引入使用。
+[@gem-mine/immutable](https://github.com/gem-mine/immutable) 就非常适合以上场景，它可以被任意的 js 项目中引入使用
 
 ### immutable 的作用
-
 - 为了更舒服的写 compare，例如 react 中 shouldComponentUpdate（如果使用 react-redux，这一步其实在 connect 时默认会处理）
 - 更方便操作深层次级别的 state 结构，例如 redux reducer 中繁琐的 spread 操作
 - 提高性能
-- 不要去拍扁数据，基本和服务端一致
+- 不用去拍扁数据，基本和服务端一致
 
-### imuutable 带来的问题
-
-- 侵入式，访问 immutable 数据结构，需要 getIn 等新语法，例如 view 层数据访问，如果以后不需要或者换方案，重构代价大
-- 体积大，其实你大部分只需要 fromJS，toJS，Map，List 等简单接口
-- 新语法，需要学习一套新的 API 来操作 immutable 数据结构
-- 思维负担，需要认清哪个对象是 immutable object，哪个对象是 native object
+### immutable 带来的问题
+- 侵入式。访问 immutable 数据结构，需要 getIn 等新语法，例如 view 层数据访问，如果以后不需要或者换方案，重构代价大
+- 体积大。其实你大部分只需要 fromJS，toJS，Map，List 等简单接口
+- 新语法。需要学习一套新的 API 来操作 immutable 数据结构
+- 思维负担。需要认清哪个对象是 immutable object，哪个对象是 native object
 
 ### 功能和优势
-
 - 对深层级的 state 提供方便的操作
 - 使用 native object，最大程度降低侵入式带来的问题，也不需要去分辨对象是否是 immutable
 - 体积微乎其微
 - 主 API（getIn、setIn）仅两个，附加数组操作 push/pop/shift/unshift/splice，一共 7 个
 - 兼容性好
 
-安装：npm i @gem-mine/immutable -S
+## 安装
 
-```javascript
-// 例如有个 state 结构如下：
+```shell
+npm i @gem-mine/immutable -S // 安装
+```
+
+## 快速上手
+
+```js
+import { setIn } from '@gem-mine/immutable'
 const state = {
   loading: false,
   offset: 0,
@@ -77,13 +79,11 @@ const newState = setIn(state, {
   'data.address.city': { id: 350200, name: '厦门' }
 })
 ```
-
 ## API
 
 API 的更详细用法可以查看单元测试用例：[@gem-mine/immutable 单元测试](https://github.com/gem-mine/immutable/tree/master/test/unit)
 
 ### getIn(object, keyPath)
-
 从 object 中获取对应路径的值，只要中间取不到值就立即返回 undefined
 
 ```js
@@ -104,10 +104,9 @@ getIn(obj, 'user.info.name') // undefined
 ```
 
 ### setIn(object, data)
-
 immutable 能力，设置 object 的值
 
-```javascript
+```js
 import { setIn } from '@gem-mine/immutable'
 
 const obj = {
@@ -130,12 +129,9 @@ const newObj2 = setIn(obj, {
   }
 })
 ```
-
 ### 数组操作
-
 数组操作相对来说使用频率较低，具体可以参见单元测试用例：
 [@gem-mine/immutable 数组操作](https://github.com/gem-mine/immutable/tree/master/test/unit/array.spec.js)
-
 - push(array, path, data)
 - pop(array, path)
 - unshift(array, path, data)
@@ -143,3 +139,8 @@ const newObj2 = setIn(obj, {
 - splice(array, path, deleteCount, ...add)
 
 
+## 更新记录
+
+### 2.0.0
+`2021-09-07`
+- refactor: typescript重构

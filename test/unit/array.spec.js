@@ -1,4 +1,6 @@
-import { setIn, getIn, push, pop, shift, unshift, splice } from '../index'
+import {
+  setIn, getIn, push, pop, shift, unshift, splice
+} from '../../src'
 
 const o1 = [
   {
@@ -28,8 +30,6 @@ const o1 = [
     ]
   }
 ]
-
-const n1 = [1, 2, 3]
 
 const obj = {
   a: 1,
